@@ -39,20 +39,45 @@
             alt="User Avatar"
             class="header-user logged_image"
           >
-          <h4 class="header-user logged_name">
-            {{ username }}
-          </h4>
+          <div class="header-user__info">
+            <h4 class="header-user logged_name">
+              {{ username }}
+            </h4>
+            <h6 class="header-user logged_bonuses">
+              Bonuses: {{ bonuses }}
+            </h6>
+          </div>
           <v-btn
             plain
             x-small
-            @click="logOut"
+            @click="toggleMenu"
           >
             <v-icon
               color="var(--light)"
             >
-              mdi-logout
+              mdi-chevron-down
             </v-icon>
           </v-btn>
+          <div v-if="isMenuOpen" class="dropdown-menu">
+            <a class="dropdown-menu__link">
+              My account
+              <v-icon>
+                mdi-account
+              </v-icon>
+            </a>
+            <a class="dropdown-menu__link">
+              My cart
+              <v-icon>
+                mdi-cart-outline
+              </v-icon>
+            </a>
+            <a class="dropdown-menu__link" @click="logOut">
+              Logout
+              <v-icon>
+                mdi-logout
+              </v-icon>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -67,10 +92,11 @@ export default {
   data: () => {
     return {
       userImage: 'https://i.pinimg.com/564x/99/aa/99/99aa992903cf7236e962a1cf6a58196a.jpg',
+      isMenuOpen: false,
     }
   },
   computed: {
-    ...mapState(['username', 'token']),
+    ...mapState(['username', 'token', 'bonuses']),
     isLogged() {
       return this.username && this.token
     },
@@ -85,6 +111,9 @@ export default {
       this.$store.commit('setBonuses', null)
       this.$store.commit('setUsername', '')
 
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     },
   },
 }
@@ -150,6 +179,14 @@ export default {
     align-items: center;
     justify-content: space-between;
 
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      justify-content: center;
+      gap: 5px;
+    }
+
     &__actions {
       padding: 10px 20px;
       color: var(--light);
@@ -177,11 +214,19 @@ export default {
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      
+      position: relative;
 
       &_name {
         color: var(--light);
         font-family: var(--strong);
         font-size: 14px;
+      }
+
+      &_bonuses {
+        color: var(--low-light);
+        font-family: var(--strong);
+        font-size: 13px;
       }
 
       &_image {
@@ -190,6 +235,41 @@ export default {
         max-height: 40px;
       }
     }
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  background-color: var(--light);
+  border-radius: 8px;
+  border: 2px solid var(--low-light);
+  margin: 15px 0;
+  padding: 25px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  gap: 20px;
+
+  &__link {
+    text-decoration: none;
+    font-family: var(--strong);
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    color: var(--dark);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--dark);
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
   }
 }
 </style>
