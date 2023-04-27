@@ -2,14 +2,21 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import * as layouts from '@/layouts'
+import * as pages from '@/pages'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: layouts.defaultLayout
+    component: layouts.defaultLayout,
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: pages.landing
+      }
+    ]
   },
 ]
 

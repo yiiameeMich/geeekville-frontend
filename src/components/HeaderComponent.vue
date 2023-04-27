@@ -57,6 +57,7 @@ export default {
     font-size: 36px;
     color: var(--light);
     font-weight: 700;
+    font-family: var(--graffity);
     cursor: pointer;
     user-select: none;
     transition: 0.6s;
@@ -78,6 +79,8 @@ export default {
       color: var(--light);
       transition: 0.6s;
       font-size: 18px;
+      font-family: var(--graffity);
+      letter-spacing: 1.4px;
       border-bottom: solid 2px transparent;
 
       &:hover {
@@ -97,6 +100,8 @@ export default {
       color: var(--light);
       font-size: 16px;
       font-weight: 600;
+      letter-spacing: 3px;
+      font-family: var(--graffity);
       transition: 0.6s;
       text-decoration: none;
 
