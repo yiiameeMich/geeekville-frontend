@@ -60,8 +60,7 @@ export default {
 <style scoped lang="scss">
 .landing {
   background-color: var(--dark);
-  min-height: 100vh;
-  max-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,6 +72,7 @@ export default {
     align-items: center;
     justify-content: space-evenly;
     gap: 120px;
+    height: 100%;
   }
 
   &__featured-product {

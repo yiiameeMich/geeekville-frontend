@@ -11,8 +11,13 @@ export default {
 </script>
 
 <style lang="scss">
+html, body {
+  height: 100%;
+}
+
 #app {
   background-color: var(--dark);
+  height: 100%;
 }
 
 .container {
