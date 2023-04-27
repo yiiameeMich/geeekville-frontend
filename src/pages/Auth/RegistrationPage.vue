@@ -87,8 +87,6 @@ export default {
           phoneNumber: this.userData.phone,
           password: this.userData.password,
         }).then(res => {
-          console.log(res)
-
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('username', res.data.username)
           localStorage.setItem('bonuses', res.data.bonuses)
@@ -99,7 +97,7 @@ export default {
 
           this.$router.push({ name: 'home' })
         }).catch(err => {
-          console.log(err)
+          console.log(err.response.data.message)
 
           this.clearFields()
         }).finally(() => {
