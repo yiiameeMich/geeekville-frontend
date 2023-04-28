@@ -57,6 +57,27 @@
             </button>
           </v-form>
         </div>
+        <v-dialog
+            activator="parent"
+            v-if="isMailSent"
+            v-model="isMailSent"
+            persistent
+            width="700"
+            height="500"
+        >
+          <v-card>
+            <div class="verification-dialog">
+              <LoaderComponent image-src="/assets/icons/batman-icon.png" />
+              <h1 class="verification-dialog__title">
+                Verify your account
+              </h1>
+              <h3 class="verification-dialog__description">
+                We have sent email confirmation on the address you've provided. Please, check it out and click "Verify account".
+                This will give you an opportunity to sign in and no one else will ever take your email or login.
+              </h3>
+            </div>
+          </v-card>
+        </v-dialog>
       </div>
     </div>
   </div>
@@ -64,8 +85,13 @@
 
 <script>
 import axios from 'axios'
+import LoaderComponent from "@/components/LoaderComponent.vue";
+
 export default {
   name: "RegistrationPage",
+  components: {
+    LoaderComponent: LoaderComponent,
+  },
   data: () => {
     return {
       userData: {
@@ -75,6 +101,7 @@ export default {
         password: '',
         confirmPassword: '',
       },
+      isMailSent: false,
     }
   },
   methods: {
@@ -86,16 +113,8 @@ export default {
           email: this.userData.email,
           phoneNumber: this.userData.phone,
           password: this.userData.password,
-        }).then(res => {
-          localStorage.setItem('token', res.data.token)
-          localStorage.setItem('username', res.data.username)
-          localStorage.setItem('bonuses', res.data.bonuses)
-
-          this.$store.commit('setToken', res.data.token)
-          this.$store.commit('setUsername', res.data.username)
-          this.$store.commit('setBonuses', res.data.bonuses)
-
-          this.$router.push({ name: 'home' })
+        }).then(() => {
+          this.isMailSent = true;
         }).catch(err => {
           console.log(err.response.data.message)
 
@@ -169,6 +188,8 @@ export default {
           padding: 40px;
           min-width: 30%;
           margin: 40px 0;
+
+          box-shadow: 6px 6px 6px var(--low-light);
         }
 
         &-input {
@@ -191,6 +212,7 @@ export default {
 
           border-radius: 4px;
           border: 1px solid var(--dark);
+          box-shadow: 3px 3px 3px var(--low-dark);
 
           padding: 10px;
           margin: 10px 0;
@@ -204,6 +226,30 @@ export default {
           }
         }
       }
+    }
+  }
+
+  .verification-dialog {
+    background: var(--light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    gap: 30px;
+
+    &__title {
+      font-family: var(--graffity);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-size: 34px;
+    }
+
+    &__description {
+      font-family: var(--strong);
+      font-size: 16px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
     }
   }
 </style>

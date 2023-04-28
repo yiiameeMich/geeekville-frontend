@@ -61,15 +61,15 @@ export default {
           username: this.userData.username,
           password: this.userData.password,
         }).then(res => {
-          console.log(res)
-
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('username', res.data.username)
           localStorage.setItem('bonuses', res.data.bonuses)
+          localStorage.setItem('isVerified', res.data.isVerified)
 
           this.$store.commit('setToken', res.data.token)
           this.$store.commit('setUsername', res.data.username)
           this.$store.commit('setBonuses', res.data.bonuses)
+          this.$store.commit('setVerification', res.data.isVerified)
 
           this.$router.push({ name: 'home' })
         }).catch(err => {
@@ -142,6 +142,8 @@ export default {
         padding: 40px;
         min-width: 30%;
         margin: 40px 0;
+
+        box-shadow: 6px 6px 6px var(--low-light);
       }
 
       &-input {
@@ -164,6 +166,7 @@ export default {
 
         border-radius: 4px;
         border: 1px solid var(--dark);
+        box-shadow: 3px 3px 3px var(--low-dark);
 
         padding: 10px;
         margin: 10px 0;
