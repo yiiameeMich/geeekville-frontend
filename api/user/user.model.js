@@ -36,6 +36,11 @@ const UserSchema = new Schema({
     required: false,
     default: () => 0,
   },
+  verificationToken: {
+    type: String,
+    required: false,
+    default: () => '',
+  },
 }, {
   timestamps: true,
 })

@@ -51,6 +51,8 @@
             plain
             x-small
             @click="toggleMenu"
+            :class="{'menu-open': isMenuOpen}"
+            style="transition: 0.6s"
           >
             <v-icon
               color="var(--light)"
@@ -96,9 +98,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['username', 'token', 'bonuses']),
+    ...mapState(['username', 'token', 'bonuses', 'isVerified']),
     isLogged() {
-      return this.username && this.token
+      return this.username && this.token && this.isVerified
     },
   },
   methods: {
@@ -106,10 +108,12 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('username')
       localStorage.removeItem('bonuses')
+      localStorage.removeItem('isVerified')
 
       this.$store.commit('setToken', '')
       this.$store.commit('setBonuses', null)
       this.$store.commit('setUsername', '')
+      this.$store.commit('setVerification', null)
 
     },
     toggleMenu() {
@@ -271,5 +275,9 @@ export default {
     gap: 15px;
     width: 100%;
   }
+}
+
+.menu-open {
+  transform: rotate(180deg) !important;
 }
 </style>

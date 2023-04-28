@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -16,8 +16,12 @@ html, body {
 }
 
 #app {
-  background-color: var(--dark);
-  height: 100%;
+  background-color: var(--dark) !important;
+  height: 100% !important;
+}
+
+.v-application {
+  display: block !important;
 }
 
 .container {
