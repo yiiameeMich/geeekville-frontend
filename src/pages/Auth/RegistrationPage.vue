@@ -41,13 +41,14 @@
               placeholder="Password"
               type="password"
               hide-details
+              :rules="[validatePasswords]"
             />
             <v-text-field
               v-model="userData.confirmPassword"
               class="registration-content__form-input"
               placeholder="Confirm password"
               type="password"
-              hide-details
+              :rules="[validatePasswords]"
             />
             <button
               class="registration-content__form-button"
@@ -80,16 +81,27 @@
         </v-dialog>
       </div>
     </div>
+    <template v-for="(err, idx) in errors">
+      <TooltipComponent
+        v-if="tooltip"
+        :key="idx"
+        :tooltip-text="err"
+        tooltip-type="Error"
+        :style='tooltipPositioning(idx)'
+      />
+    </template>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import LoaderComponent from "@/components/LoaderComponent.vue";
+import TooltipComponent from "@/components/TooltipComponent.vue";
 
 export default {
   name: "RegistrationPage",
   components: {
+    TooltipComponent,
     LoaderComponent: LoaderComponent,
   },
   data: () => {
@@ -102,6 +114,8 @@ export default {
         confirmPassword: '',
       },
       isMailSent: false,
+      errors: [],
+      tooltip: false,
     }
   },
   methods: {
@@ -116,9 +130,14 @@ export default {
         }).then(() => {
           this.isMailSent = true;
         }).catch(err => {
-          console.log(err.response.data.message)
+          this.tooltip = true;
+          this.errors = err.response.data.message.split('.')
 
           this.clearFields()
+
+          setTimeout(() => {
+            this.tooltip = false;
+          }, 5000)
         }).finally(() => {
           this.clearFields()
         })
@@ -130,6 +149,20 @@ export default {
       this.userData.email = ''
       this.userData.phone = ''
       this.userData.confirmPassword = ''
+    },
+  },
+  computed: {
+    tooltipPositioning() {
+      return idx => idx !== 0 ? `bottom: ${idx * 15}%;` : 'bottom: 1%;'
+    },
+    validatePasswords() {
+      return () => {
+        if ((!!this.userData.password && !!this.userData.confirmPassword) && (this.userData.password !== this.userData.confirmPassword)) {
+          return 'Passwords are different'
+        } else {
+          return true
+        }
+      }
     },
   },
 }
