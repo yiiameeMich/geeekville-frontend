@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 100%">
+  <div>
     <HeaderComponent />
-    <v-main app class="fill-height">
+    <v-main app class="fill-height" style="height: 100%;">
       <transition name="fade" mode="out-in" appear>
         <router-view></router-view>
       </transition>

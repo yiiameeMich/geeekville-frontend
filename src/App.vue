@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -11,8 +11,17 @@ export default {
 </script>
 
 <style lang="scss">
+html, body {
+  height: 100%;
+}
+
 #app {
-  background-color: var(--dark);
+  background-color: var(--dark) !important;
+  height: 100% !important;
+}
+
+.v-application {
+  display: block !important;
 }
 
 .container {
