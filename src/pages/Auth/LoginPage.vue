@@ -65,11 +65,13 @@ export default {
           localStorage.setItem('username', res.data.username)
           localStorage.setItem('bonuses', res.data.bonuses)
           localStorage.setItem('isVerified', res.data.isVerified)
+          localStorage.setItem('userRole', res.data.role)
 
           this.$store.commit('setToken', res.data.token)
           this.$store.commit('setUsername', res.data.username)
           this.$store.commit('setBonuses', res.data.bonuses)
           this.$store.commit('setVerification', res.data.isVerified)
+          this.$store.commit('setUserRole', res.data.role)
 
           this.$router.push({ name: 'home' })
         }).catch(err => {

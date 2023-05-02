@@ -152,6 +152,7 @@ class authController {
           username: user.username,
           bonuses: user.bonusesAmount,
           isVerified: user.isVerified,
+          role: user.role,
       })
     } catch (error) {
       console.log(error)
