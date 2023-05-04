@@ -7,9 +7,11 @@ import router from './router'
 Vue.config.productionTip = false
 
 //TODO: BACKEND
-// 1.EMPTY
+// 1.Create methods to get products
+// 2.Create methods to upload product image and profile image
 //TODO: FRONTEND
-// 1. Create pages for Verified accounts and UnVerified ones
+// 1. Create page to see products as admin
+// 2. After there is a possibility to upload images ----> create a page to see products as a user
 
 new Vue({
   vuetify,

@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 
 app.use('/auth', require('./api/auth/auth.router'))
+app.use('/products', require('./api/products/products.router'))
 
 const uri = process.env.APP_MONGODB_URL
 

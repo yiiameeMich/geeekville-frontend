@@ -61,6 +61,16 @@
             </v-icon>
           </v-btn>
           <div v-if="isMenuOpen" class="dropdown-menu">
+            <a
+                v-if=" role === 'Admin' "
+                class="dropdown-menu__link"
+                @click="$router.push({name: 'admin_home'})"
+            >
+              Admin panel
+              <v-icon>
+                mdi-cog-outline
+              </v-icon>
+            </a>
             <a class="dropdown-menu__link">
               My account
               <v-icon>
@@ -71,16 +81,6 @@
               My cart
               <v-icon>
                 mdi-cart-outline
-              </v-icon>
-            </a>
-            <a
-              v-if=" role === 'Admin' "
-              class="dropdown-menu__link"
-              @click="$router.push({name: 'admin_home'})"
-            >
-              Admin panel
-              <v-icon>
-                mdi-cog-outline
               </v-icon>
             </a>
             <a class="dropdown-menu__link" @click="logOut">

@@ -134,10 +134,6 @@ export default {
           this.errors = err.response.data.message.split('.')
 
           this.clearFields()
-
-          setTimeout(() => {
-            this.tooltip = false;
-          }, 5000)
         }).finally(() => {
           this.clearFields()
         })

@@ -61,6 +61,16 @@
             </v-icon>
           </v-btn>
           <div v-if="isMenuOpen" class="dropdown-menu">
+            <a
+                v-if=" role === 'Admin' "
+                class="dropdown-menu__link"
+                @click="$router.push({name: 'home'})"
+            >
+              Go back
+              <v-icon>
+                mdi-chevron-left
+              </v-icon>
+            </a>
             <a class="dropdown-menu__link">
               My account
               <v-icon>

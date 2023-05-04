@@ -17,6 +17,12 @@
                 mdi-cart-variant
               </v-icon>
             </v-btn>
+            <v-btn class="admin-panel__home-content__button" @click="$router.push({name: 'add_product'})">
+              Add product
+              <v-icon>
+                mdi-plus
+              </v-icon>
+            </v-btn>
             <v-btn class="admin-panel__home-content__button">
               Manage users
               <v-icon>
@@ -95,8 +101,11 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 20px;
+
+        max-width: 75%;
       }
 
       &__button {

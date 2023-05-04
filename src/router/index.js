@@ -55,6 +55,16 @@ const routes = [
         path: '/admin_home',
         name: 'admin_home',
         component: admin.adminHome
+      },
+      {
+        path: '/add_product',
+        name: 'add_product',
+        component: admin.addProductPage,
+      },
+      {
+        path: '/manage_products',
+        name: 'manage_products',
+        component: admin.manageProducts,
       }
     ],
   }
