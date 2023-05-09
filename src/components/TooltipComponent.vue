@@ -1,5 +1,5 @@
 <template>
-<div class="tooltip">
+<div v-if="isShown" class="tooltip">
   <img :src=tooltipIcon alt="Icon" class="tooltip_image">
   <h3 class="tooltip_text"> {{ tooltipText }} </h3>
 </div>
@@ -10,7 +10,7 @@ export default {
   name: "TooltipComponent",
   data: () => {
     return {
-
+      isShown: false,
     }
   },
   props: {
@@ -29,6 +29,21 @@ export default {
       return this.tooltipType === 'Success' ? '/assets/icons/success-icon.png' : '/assets/icons/failure-icon.png'
     },
   },
+  methods: {
+    showAndRemoveTooltip(timeout) {
+      this.isShown = true;
+      setTimeout(() => {
+        this.isShown = false
+      }, timeout)
+    },
+  },
+  mounted() {
+    if (this.tooltipType === 'Success') {
+      this.showAndRemoveTooltip(3000)
+    } else {
+      this.showAndRemoveTooltip(6000)
+    }
+  }
 }
 </script>
 

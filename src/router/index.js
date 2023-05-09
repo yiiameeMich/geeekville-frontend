@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import * as layouts from '@/layouts'
 import * as pages from '@/pages'
 import * as auth from '@/pages/Auth'
+import * as admin from '@/pages/Admin'
 import * as verification from '@/pages/Verification'
 
 Vue.use(VueRouter)
@@ -44,6 +45,27 @@ const routes = [
         name: 'not_verified',
         component: verification.error,
       },
+    ],
+  },
+  {
+    path: '/admin',
+    component: layouts.adminLayout,
+    children: [
+      {
+        path: '/admin_home',
+        name: 'admin_home',
+        component: admin.adminHome
+      },
+      {
+        path: '/add_product',
+        name: 'add_product',
+        component: admin.addProductPage,
+      },
+      {
+        path: '/manage_products',
+        name: 'manage_products',
+        component: admin.manageProducts,
+      }
     ],
   }
 ]

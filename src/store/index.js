@@ -7,6 +7,7 @@ const defaultToken = localStorage.getItem('token') || null
 const defaultUsername = localStorage.getItem('username') || null
 const defaultUserBonuses = localStorage.getItem('bonuses') || null
 const defaultUserVerification = localStorage.getItem('isVerified') || null
+const defaultUserRole = localStorage.getItem('userRole') || null
 
 const store = new Vuex.Store({
   state: {
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     username: defaultUsername,
     bonuses: defaultUserBonuses,
     isVerified: defaultUserVerification,
+    role: defaultUserRole,
   },
   getters: {
 
@@ -33,6 +35,9 @@ const store = new Vuex.Store({
     },
     setVerification (state, payload) {
       state.isVerified = payload
+    },
+    setUserRole (state, payload) {
+      state.role = payload
     },
   },
 })

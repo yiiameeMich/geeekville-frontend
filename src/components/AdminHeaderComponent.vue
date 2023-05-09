@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-content">
         <div class="header-logo">
-          GEEKVILLE
+          GEEKVILLE AdminPanel
         </div>
         <div class="header-nav">
           <a class="header-nav__link" @click="$router.push({name: 'home'})">
@@ -20,8 +20,8 @@
           </a>
         </div>
         <div
-          v-if="!isLogged"
-          class="header-user"
+            v-if="!isLogged"
+            class="header-user"
         >
           <a class="header-user__actions" @click="$router.push({name: 'sign_in'})">
             Sign In
@@ -31,13 +31,13 @@
           </a>
         </div>
         <div
-          v-else-if="isLogged"
-          class="header-user logged"
+            v-else-if="isLogged"
+            class="header-user logged"
         >
           <img
-            :src="userImage"
-            alt="User Avatar"
-            class="header-user logged_image"
+              :src="userImage"
+              alt="User Avatar"
+              class="header-user logged_image"
           >
           <div class="header-user__info">
             <h4 class="header-user logged_name">
@@ -48,14 +48,14 @@
             </h6>
           </div>
           <v-btn
-            plain
-            x-small
-            @click="toggleMenu"
-            :class="{'menu-open': isMenuOpen}"
-            style="transition: 0.6s"
+              plain
+              x-small
+              @click="toggleMenu"
+              :class="{'menu-open': isMenuOpen}"
+              style="transition: 0.6s"
           >
             <v-icon
-              color="var(--light)"
+                color="var(--light)"
             >
               mdi-chevron-down
             </v-icon>
@@ -64,11 +64,11 @@
             <a
                 v-if=" role === 'Admin' "
                 class="dropdown-menu__link"
-                @click="$router.push({name: 'admin_home'})"
+                @click="$router.push({name: 'home'})"
             >
-              Admin panel
+              Go back
               <v-icon>
-                mdi-cog-outline
+                mdi-chevron-left
               </v-icon>
             </a>
             <a class="dropdown-menu__link">
@@ -156,7 +156,6 @@ export default {
     cursor: pointer;
     user-select: none;
     transition: 0.6s;
-    letter-spacing: 2px;
 
     &:hover {
       color: var(--low-light)
@@ -228,7 +227,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      
+
       position: relative;
 
       &_name {
